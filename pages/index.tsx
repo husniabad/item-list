@@ -30,7 +30,7 @@ export default function Home() {
     try {
       const response = await axios.get<Item[]>(`${API_BASE_URL}/api/items`);
       setItems(response.data);
-    } catch  {
+    } catch {
       console.error('Failed fetching notes: ');
     } finally {
       setLoading('');
@@ -43,7 +43,7 @@ export default function Home() {
 
   const handleDelete = async (_id: string) => {
     console.log(_id);
-    setLoading('loading');
+    setLoading('deleting');
     try {
       await axios.delete<Item[]>(`${API_BASE_URL}/api/items/${_id}`);
       // console.log(response.data);

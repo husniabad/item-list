@@ -37,7 +37,7 @@ export default function ItemForm({
           headers: { 'Content-Type': 'application/json' },
           body: data,
         });
-      } catch  {
+      } catch {
         console.error('Failed updating note:');
       }
     } else {
@@ -47,7 +47,7 @@ export default function ItemForm({
           body: data,
         });
         console.log('response', response.data);
-      } catch  {
+      } catch {
         console.error('Failed to add note');
       }
     }
