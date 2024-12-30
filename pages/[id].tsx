@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
-import { Item } from '.';
 import axios from 'axios';
 import ItemForm from '@/components/ItemForm';
 import Modal from '@/components/Modal';
 import Loading from '@/components/Loading';
+
+type Item = {
+  _id: string;
+  title: string;
+  description: string;
+  createdAt: string;
+};
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
