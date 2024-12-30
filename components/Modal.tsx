@@ -1,13 +1,11 @@
-import { Item } from '@/pages';
 import { Dialog, Transition } from '@headlessui/react';
-import { Dispatch, Fragment, ReactNode, SetStateAction } from 'react';
+import {  Fragment, ReactNode } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 interface ModalProps {
   isOpen: boolean;
   closeModal: () => void;
   children: ReactNode;
-  // setItems: Dispatch<SetStateAction<Item[]>>;
 }
 
 export default function Modal({
