@@ -7,7 +7,7 @@ interface ModalProps {
   isOpen: boolean;
   closeModal: () => void;
   children: ReactNode;
-  setItems: Dispatch<SetStateAction<Item[]>>;
+  // setItems: Dispatch<SetStateAction<Item[]>>;
 }
 
 export default function Modal({

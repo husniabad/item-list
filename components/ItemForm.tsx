@@ -83,7 +83,7 @@ export default function ItemForm({
       </div>
       <button
         type='submit'
-        className='bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600'>
+        className='bg-slate-700 text-white py-2 px-4 rounded-lg hover:bg-slate-600'>
         {item ? 'Update' : 'Add'} Item
       </button>
     </form>

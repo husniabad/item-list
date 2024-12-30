@@ -3,6 +3,7 @@ import axios from 'axios';
 import Modal from '../components/Modal';
 import ItemForm from '../components/ItemForm';
 import Loading from '../components/Loading';
+import { useRouter } from 'next/router';
 import {
   PencilIcon,
   PlusCircleIcon,
@@ -20,6 +21,7 @@ export type Item = {
 };
 
 export default function Home() {
+  const router = useRouter();
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -54,6 +56,11 @@ export default function Home() {
       setLoading('');
     }
   };
+  const handleClick = (id: string) => {
+    setLoading('loading');
+    router.push(`/${id}`);
+    setLoading('');
+  };
 
   const openModal = (item?: Item) => {
     setModalItem(item || null);
@@ -81,15 +88,21 @@ export default function Home() {
           items.map((item) => (
             <li
               key={item._id}
-              className='border rounded p-4 shadow bg-slate-100 truncate text-wrap oversflow-hidden tegxt-wrap'>
-              <h3 className='text-lg text-black font-semibold'>{item.title}</h3>
-              <p className='text-sm text-gray-700 mt-2'>{item.description}</p>
-              <div className='h-[1px] w-full mb-2 mt-4 bg-slate-400' />
+              className='border rounded p-4 shadow bg-slate-200 truncate  '>
+              <div
+                onClick={() => handleClick(item._id)}
+                className='cursor-pointer'>
+                <h3 className='text-lg text-black font-semibold'>
+                  {item.title}
+                </h3>
+                <p className='text-sm text-gray-700 mt-2'>{item.description}</p>
+                <div className='h-[1px] w-full mb-2 mt-4 bg-slate-400' />
+              </div>
               <div className='flex justify-between  space-x-4 mt-4 w-full'>
                 <div className='flex gap-5  w-max'>
                   <button
                     onClick={() => openModal(item)}
-                    className='text-blue-500'>
+                    className='text-slate-700'>
                     <PencilIcon className='w-5 h-5' />
                   </button>
                   <button
@@ -118,11 +131,11 @@ export default function Home() {
             </li>
           ))
         ) : (
-          <div className='flex flex-col h-full w-full border bg-[#852ed7] border-white p-2 rounded-lg justify-center items-center'>
+          <div className='flex flex-col h-full w-full border bg-slate-800 border-white p-2 rounded-lg justify-center items-center'>
             <h1 className='text-lg font-semibold'>Add Your First Note Now!</h1>
             <button
               onClick={() => openModal()}
-              className='m-auto p-2 rounded-xl text-purple-900 focus:outline-none'>
+              className='m-auto p-2 rounded-xl text-slate-900 focus:outline-none'>
               <PlusCircleIcon className='w-12 h-12 text-white ' />
             </button>
           </div>
@@ -132,7 +145,8 @@ export default function Home() {
         <Modal
           isOpen={isModalOpen}
           closeModal={closeModal}
-          setItems={setItems}>
+          // setItems={setItems}
+        >
           <ItemForm
             item={modalItem as Item}
             onClose={closeModal}
